@@ -1,0 +1,33 @@
+# --- Sicherheit ---
+# Blockiere direkten Zugriff auf Konfigurations- und Composer-Dateien
+<FilesMatch "^(config|config_mail|composer|\.env)">
+  Require all denied
+</FilesMatch>
+
+# Vendor-Ordner schützen (kein <Directory> erlaubt)
+RewriteEngine On
+RewriteRule ^vendor/ - [F,L]
+
+# --- Icons & statische Dateien ---
+<FilesMatch "\.(png|jpg|jpeg|gif|svg|css|js|json|webmanifest|ico)$">
+  Require all granted
+</FilesMatch>
+
+# --- Standard-Optionen ---
+Options +FollowSymLinks
+DirectoryIndex index.php
+
+# --- Fehlerbehandlung ---
+ErrorDocument 403 /index.php
+ErrorDocument 404 /index.php
+
+# --- Caching (optional) ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType application/json "access plus 7 days"
+  ExpiresByType application/manifest+json "access plus 7 days"
+</IfModule>

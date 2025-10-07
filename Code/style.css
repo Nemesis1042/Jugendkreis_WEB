@@ -1,0 +1,322 @@
+:root {
+  --bg: #1a1715;
+  --bg-card: #25211f;
+  --accent: #b26b37;
+  --accent-light: #d7935c;
+  --fg: #f2ede7;
+  --muted: #b8b2aa;
+  --border: #3a3430;
+}
+
+/* ---------- GLOBAL ---------- */
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+  transition: all 0.15s ease;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---------- HEADER ---------- */
+header {
+  background: url("header.jpg") center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 5rem 1rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(26, 23, 21, 0.95));
+}
+
+header h1,
+header p {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+header h1 {
+  font-size: 3rem;
+  letter-spacing: 1px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.top-info {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.admin-link,
+.logout {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  color: #fff;
+  font-size: 0.9rem;
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  z-index: 2;
+}
+
+.admin-link:hover {
+  opacity: 1;
+}
+
+/* ---------- MAIN ---------- */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.intro {
+  text-align: center;
+  max-width: 650px;
+  margin: 2rem auto 3rem;
+  color: var(--muted);
+}
+
+.intro h2 {
+  color: var(--accent-light);
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- BUTTONS ---------- */
+button,
+.btn {
+  background: linear-gradient(180deg, var(--accent-light), var(--accent));
+  border: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.25s ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+button:hover,
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(215, 147, 92, 0.6),
+    0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- BUTTON CONTAINER ---------- */
+.button-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.button-row .btn {
+  min-width: 180px;
+}
+
+/* ---------- EVENT LIST ---------- */
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.event-row {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, #25211f, #1b1816);
+  border: 1px solid rgba(210, 160, 120, 0.25);
+  border-left: 5px solid var(--accent);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 0.8rem 1.2rem;
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.event-row.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.event-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+}
+
+.event-date {
+  background: var(--accent);
+  color: white;
+  width: 90px;
+  min-width: 90px;
+  height: 70px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1.2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.event-date .day {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.event-date .month {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.event-content {
+  flex: 1;
+}
+
+.event-content h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--accent-light);
+}
+
+.event-content p {
+  margin: 0.3rem 0 0;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.empty-msg {
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-top: 4rem;
+}
+
+/* ---------- FORMS (schönes Rework) ---------- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #1f1b19;
+  padding: 1.8rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(210, 160, 120, 0.15);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #14110f;
+  color: var(--fg);
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-light);
+  box-shadow: 0 0 8px rgba(215, 147, 92, 0.4);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+/* für Name + E-Mail nebeneinander */
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row input {
+  flex: 1;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: #14110f;
+  border-top: 1px solid var(--border);
+}
+
+a {
+  color: var(--accent-light);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 700px) {
+  header {
+    padding: 3rem 1rem 2rem;
+  }
+
+  .event-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .event-date {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
